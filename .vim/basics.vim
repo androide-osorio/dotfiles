@@ -91,7 +91,7 @@ if has("gui_running")
   set guioptions-=e
   set t_Co=256
   set guitablabel=%M\ %t
-endif
+endif 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo

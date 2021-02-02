@@ -29,9 +29,13 @@ brew "watchman"
 brew "yarn"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
+# Rust programming language
+brew "rustup"
+
 # App to build and share containerized applications and microservices
 cask "docker"
-
+# Browser for web development
+cask "google-chrome"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Collaboration platform for API development
