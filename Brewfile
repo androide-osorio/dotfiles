@@ -4,7 +4,9 @@ tap "homebrew/core"
 tap "derailed/k9s"
 
 # source control management
-bew "git"
+brew "git"
+brew "git-lfs"
+
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Mac App Store command-line interface

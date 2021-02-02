@@ -1,0 +1,51 @@
+[color]
+	# Use colors in Git commands that are capable of colored output when
+	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[user]
+	name = Andres Osorio
+	email = 1386527+androide-osorio@users.noreply.github.com
+
+[alias]
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch --all
+	remotes = remote --verbose
+	# List aliases.
+	aliases = config --get-regexp alias
+	# Remove branches that have already been merged with main.
+	# a.k.a. ‘delete merged’
+	prune-dead = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# Show the user email for the current repository.
+	whoami = config user.email
+
+[branch]
+	# Show most recently changed branches first.
+	sort = -committerdate
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[init]
+	# rename master branch to main branch
+	defaultBranch = main
