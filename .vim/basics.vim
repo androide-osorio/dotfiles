@@ -15,6 +15,21 @@
 "    -> Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plug-ins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+  Plug 'sheerun/vim-polyglot'
+	Plug 'preservim/nerdtree'
+	Plug 'ryanoasis/vim-devicons'
+  Plug 'itchyny/lightline.vim'
+  Plug 'jeffkreeftmeijer/vim-numbertoggle'
+  Plug 'joshdick/onedark.vim'
+" Initialize plugin system
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -67,6 +82,16 @@ endif
 syntax on
 syntax enable
 colorscheme onedark
+
+set background=dark
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+  set guioptions-=T
+  set guioptions-=e
+  set t_Co=256
+  set guitablabel=%M\ %t
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
