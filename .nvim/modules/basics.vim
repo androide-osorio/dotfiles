@@ -16,22 +16,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plug-ins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
-  Plug 'sheerun/vim-polyglot'
-	Plug 'preservim/nerdtree'
-	Plug 'ryanoasis/vim-devicons'
-  Plug 'itchyny/lightline.vim'
-  Plug 'jeffkreeftmeijer/vim-numbertoggle'
-  Plug 'joshdick/onedark.vim'
-" Initialize plugin system
-call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set showmode
@@ -55,12 +39,12 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
+" remap leader key
+let mapleader = "\<Space>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM UI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn on the Wild menu
-set wildmenu
-
 " -> additional
 " For regular expressions turn magic on
 set magic
@@ -81,17 +65,11 @@ if (has('termguicolors'))
 endif
 syntax on
 syntax enable
-colorscheme onedark
 
+" Palenight
+let g:material_style='palenight'
 set background=dark
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-  set guioptions-=T
-  set guioptions-=e
-  set t_Co=256
-  set guitablabel=%M\ %t
-endif 
+colorscheme vim-material
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
