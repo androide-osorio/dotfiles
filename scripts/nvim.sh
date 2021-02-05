@@ -7,8 +7,8 @@ mkdir -p $CONFIG/undo $CONFIG/spell $CONFIG/autoload
 
 # Install VIM Plug if it doesn't already exist
 if [ ! -f $CONFIG/autoload/plug.vim ]; then
-    curl -fLo $CONFIG/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  curl -fLo $CONFIG/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 # Symlink VIM files config files
