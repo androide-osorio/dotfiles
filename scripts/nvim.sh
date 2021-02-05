@@ -19,6 +19,5 @@ ln -s $DOTFILES/.nvim/plugins.vim $CONFIG/plugins.vim
 # update and install plugins
 nvim +"PlugSnapshot! $CONFIG/snapshot.vim" +PlugUpgrade +PlugClean! +PlugUpdate +qa
 nvim +UpdateRemotePlugins +qa
-nvim +PlugInstall +qa
 
 echo "Installed the Basic Vim configuration successfully! Enjoy :-)"
