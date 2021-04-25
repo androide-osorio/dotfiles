@@ -2,9 +2,8 @@
 " Maintainer:
 "       Andrés Osorio - @androide-osorio
 "
-" Inspired from:
+" Inspiration:
 "       awesome-vim repository:
-"
 "           https://github.com/amix/vimrc
 "
 " Sections:
@@ -20,6 +19,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set showmode
 set encoding=UTF-8
+set mouse=a
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -42,6 +42,9 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " remap leader key
 let mapleader = "\<Space>"
 
+" synchronize VIM clipboard with OS clipboard
+set clipboard=unnamed
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM UI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -56,6 +59,10 @@ set lazyredraw
 set incsearch
 "Always show current position
 set ruler
+" show commands when executing
+set showcmd
+" always show status bar
+set laststatus=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -65,11 +72,12 @@ if (has('termguicolors'))
 endif
 syntax on
 syntax enable
+set background=dark
 
 " Palenight
-let g:material_style='palenight'
-set background=dark
-colorscheme vim-material
+let g:material_theme_style = 'palenight'
+let g:material_terminal_italics = 1
+colorscheme material
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -86,6 +94,7 @@ set noswapfile
 "-> line numbers
 set number
 set relativenumber
+set numberwidth=1
 
 " use hybrid numbers on focus and and insert mode
 :augroup numbertoggle
@@ -100,6 +109,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " 1 tab == 2 spaces
+set sw=2
 set tabstop=2
 set shiftwidth=2
 set softtabstop=0

@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
   " Themes
-  Plug 'hzchirs/vim-material'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 call plug#end()
 
 " Load plugin configs
