@@ -36,9 +36,6 @@ au FocusGained,BufEnter * checktime
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
-" remap leader key
-let mapleader = "\<Space>"
-
 " synchronize VIM clipboard with OS clipboard
 set clipboard=unnamed
 
