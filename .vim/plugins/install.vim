@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
 
   "IDE
   Plug 'easymotion/vim-easymotion'
+  Plug 'christoomey/vim-tmux-navigator'
 
   " UI
   Plug 'preservim/nerdtree'
