@@ -11,6 +11,9 @@
 call plug#begin('~/.vim/plugged')
   Plug 'sheerun/vim-polyglot'
 
+  "IDE
+  Plug 'easymotion/vim-easymotion'
+
   " UI
   Plug 'preservim/nerdtree'
   Plug 'ryanoasis/vim-devicons'
