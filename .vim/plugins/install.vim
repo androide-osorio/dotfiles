@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
+  Plug 'pechorin/any-jump.vim'
 
   " UI
   Plug 'preservim/nerdtree'

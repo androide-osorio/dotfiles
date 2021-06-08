@@ -2,6 +2,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "derailed/k9s"
+tap "homebrew/cask-versions"
 
 # source control management
 brew "git"
@@ -9,6 +10,12 @@ brew "git-lfs"
 
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
+# Package and application manager for Kubernetes
+brew "helm"
+# java env manager
+brew "jenv"
+# JSON parsing utility for the terminal
+brew "jq"
 # Mac App Store command-line interface
 brew "mas"
 # Run a Kubernetes cluster locally
@@ -36,10 +43,14 @@ brew "rustup"
 cask "docker"
 # Browser for web development
 cask "google-chrome"
+# google drive
+cask "google-drive"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Collaboration platform for API development
 cask "postman"
+# markdown preview in finder
+cask "qlmarkdown"
 # window management for MacOS
 cask "spectacle"
 # Music streaming service
