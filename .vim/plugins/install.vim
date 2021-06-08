@@ -14,12 +14,20 @@ call plug#begin('~/.vim/plugged')
   "IDE
   Plug 'easymotion/vim-easymotion'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
 
   " UI
   Plug 'preservim/nerdtree'
   Plug 'ryanoasis/vim-devicons'
   Plug 'itchyny/lightline.vim'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+  " Git
+  Plug 'tpope/vim-fugitive'
+  Plug 'sodapopcan/vim-twiggy'
+  Plug 'jreybert/vimagit'
+  Plug 'airblade/vim-gitgutter'
 
   " Themes
   Plug 'kaicataldo/material.vim', { 'branch': 'main' }
