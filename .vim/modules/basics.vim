@@ -72,6 +72,9 @@ endif
 if (has('termguicolors'))
   set termguicolors
 endif
+if !has('gui_running')
+  set t_Co=256
+endif
 syntax on
 syntax enable
 set background=dark

@@ -25,23 +25,27 @@ if [ ! -f $CONFIG_VIM/autoload/plug.vim ]; then
 fi
 
 # symlink .vim folder to $CONFIG_VIM
-ln -s $CONFIG_VIM ~/.vim
+ln -sf $CONFIG_VIM ~/.vim
 
 # Symlink VIM files with config files
-ln -s $DOTFILES/.vim/*/ $CONFIG_VIM
-ln -s $DOTFILES/.vim/init.vim $CONFIG_VIM/init.vim
+ln -sf $DOTFILES/.vim/*/ $CONFIG_VIM
+ln -sf $DOTFILES/.vim/init.vim $CONFIG_VIM/init.vim
 # ln -s $DOTFILES/.vim/plugins.vim $CONFIG_VIM/plugins.vim
 
 # symlink to .vimrc to $CONFIG_VIM/init.vim
-ln -s $CONFIG_VIM/init.vim ~/.vimrc
+ln -sf $CONFIG_VIM/init.vim ~/.vimrc
 
 # update and install plugins
 vim +"PlugSnapshot! $CONFIG_VIM/snapshot.vim" +PlugUpgrade +PlugClean! +PlugUpdate +qa
 vim +UpdateRemotePlugins +qa
 
 if [ $INCLUDE_NVIM -eq 1 ]; then
+  # create cofnig folder if it does not exist
+  if [ ! -d $CONFIG_VIM ]; then
+    mkdir -p $CONFIG_NVIM
+  fi
   # symlink nvim individual config
-  ln -s $DOTFILES/.vim/nvim-init.vim $CONFIG_NVIM/init.vim
+  ln -sf $DOTFILES/.vim/nvim-init.vim $CONFIG_NVIM/init.vim
 fi
 
 echo "Installed the Basic Vim configuration successfully! Enjoy :-)"

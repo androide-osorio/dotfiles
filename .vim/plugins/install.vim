@@ -20,7 +20,6 @@ call plug#begin('~/.vim/plugged')
 
   " UI
   Plug 'preservim/nerdtree'
-  Plug 'ryanoasis/vim-devicons'
   Plug 'itchyny/lightline.vim'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
@@ -32,6 +31,7 @@ call plug#begin('~/.vim/plugged')
 
   " Themes
   Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Load plugin configs
