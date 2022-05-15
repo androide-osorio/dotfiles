@@ -8,8 +8,12 @@ tap "homebrew/cask-versions"
 brew "git"
 brew "git-lfs"
 
+# package manager for iOS
+brew "cocoapods"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
+# GNU privacy guard for certificates and cryptography
+brew "gnupg"
 # Package and application manager for Kubernetes
 brew "helm"
 # java env manager
@@ -53,6 +57,8 @@ cask "postman"
 cask "qlmarkdown"
 # window management for MacOS
 cask "spectacle"
+# very customizable launcher
+cask "raycast"
 # Music streaming service
 cask "spotify"
 # Open-source code editor
