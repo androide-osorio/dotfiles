@@ -3,6 +3,7 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "derailed/k9s"
 tap "homebrew/cask-versions"
+tap "1password/tap/1password-cli"
 
 # source control management
 brew "git"
@@ -43,6 +44,8 @@ brew "derailed/k9s/k9s"
 # Rust programming language
 brew "rustup"
 
+# 1password CLI
+cask "1password/tap/1password-cli"
 # App to build and share containerized applications and microservices
 cask "docker"
 # Browser for web development
