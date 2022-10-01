@@ -62,7 +62,5 @@ cask "qlmarkdown"
 cask "spectacle"
 # very customizable launcher
 cask "raycast"
-# Music streaming service
-cask "spotify"
 # Open-source code editor
 cask "visual-studio-code"
