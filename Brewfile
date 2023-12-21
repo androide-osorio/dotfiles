@@ -31,6 +31,8 @@ brew "neovim"
 brew "fnm"
 # Manage multiple Python environments and version
 brew "pyenv"
+# Alternative to grep command
+brew "ripgrep"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Display directories as trees (with optional color/HTML output)
@@ -56,10 +58,10 @@ cask "google-drive"
 cask "iterm2"
 # Collaboration platform for API development
 cask "postman"
-# markdown preview in finder
-cask "qlmarkdown"
 # window management for MacOS
 cask "spectacle"
+# syntax highlighting for finder
+cask "syntax-highlight"
 # very customizable launcher
 cask "raycast"
 # Open-source code editor
