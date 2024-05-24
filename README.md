@@ -16,7 +16,7 @@ Next, install Homebrew in the new MacOS machine:
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-And install al of your programs ans Cask by running:
+And install all programs and Casks by running:
 
 ```bash
 $ brew bundle

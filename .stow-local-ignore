@@ -1,0 +1,11 @@
+# ignore git files
+\.git
+\.gitignore
+\.gitmodules
+
+# script files are utility shell scripts. Do not sync
+^/scripts
+
+^/README.*
+Brewfile
+Brewfile.lock.json
