@@ -7,7 +7,8 @@ fish_add_path /opt/homebrew/bin
 set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
 set -gx HOMEBREW_CASK_OPTS '--appdir=/Applications'
-set -gx DOTFILES "$HOME/dotfiles"
+set -gx DOTFILES "$HOME/.dotfiles"
+set -gx LANG en_US.UTF-8
 
 # rust path config
 set PATH $HOME/.cargo/bin $PATH

@@ -53,6 +53,8 @@ brew "ripgrep"
 brew "starship"
 # Dotfiles manager
 brew "stow"
+# Better manual pages
+brew "tldr"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Watch files and take action when they change
