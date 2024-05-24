@@ -1,9 +1,8 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
 tap "homebrew/core"
-tap "derailed/k9s"
+tap "homebrew/cask"
 tap "homebrew/cask-versions"
+tap "homebrew/cask-fonts"
 
 # Basic of basics
 brew "coreutils"
@@ -55,8 +54,6 @@ brew "starship"
 brew "stow"
 # Better manual pages
 brew "tldr"
-# Display directories as trees (with optional color/HTML output)
-brew "tree"
 # Watch files and take action when they change
 brew "watchman"
 # A better CD command
@@ -75,8 +72,6 @@ cask "brave-browser"
 cask "chatgpt"
 # App to build and share containerized applications and microservices
 cask "docker"
-# mac menu bar app manager
-cask "dozer"
 # Figma design tool
 cask "figma"
 # Firefox browser for web testing
@@ -85,6 +80,8 @@ cask "firefox"
 cask "google-chrome"
 # google drive
 cask "google-drive"
+# mac menu bar app manager
+cask "hiddenbar"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # screen recorder
