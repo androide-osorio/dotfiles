@@ -9,3 +9,4 @@
 ^/README.*
 Brewfile
 Brewfile.lock.json
+setup.sh
