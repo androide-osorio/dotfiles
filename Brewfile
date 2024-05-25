@@ -88,6 +88,8 @@ cask "iterm2"
 cask "kap"
 # keyboard visualizer for screencasts
 cask "keycastr"
+# vpn service
+cask "nordvpn"
 # Projects and notes on the cloud
 cask "notion"
 # Video casting and recording
@@ -97,7 +99,7 @@ cask "obsidian"
 # very customizable launcher
 cask "raycast"
 # window management for MacOS
-cask "spectacle"
+cask "rectangle"
 # freemium software modeling tool
 cask "staruml"
 # syntax highlighting for finder
