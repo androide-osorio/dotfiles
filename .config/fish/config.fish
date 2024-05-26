@@ -18,17 +18,12 @@ alias . 'pwd'
 alias ll 'ls -la'
 alias vim 'nvim'
 alias vi 'nvim'
-alias ls 'lsd --group-dirs first'
 
 # Set up fzf key bindings
 fzf --fish | source
 
 # zoxide setup
 zoxide init --cmd cd fish | source
-
-# Setting PATH for Python 3.10
-# The original version is saved in /Users/androide.osorio/.config/fish/config.fish.pysave
-set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 
 # initialize starship
 starship init fish | source

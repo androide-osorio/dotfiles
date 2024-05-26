@@ -20,12 +20,18 @@ brew "wget"
 brew "1password-cli"
 # Tools version manager
 brew "asdf"
+# Better Cat command
+brew "bat"
 # bundler gem manager
 brew "bundler"
 # package manager for iOS
 brew "cocoapods"
+# Alternative to the find command
+brew "fd"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
+# Fish extension manager
+brew "fisher"
 # command line fuzzy finder
 brew "fzf"
 # C compiler
