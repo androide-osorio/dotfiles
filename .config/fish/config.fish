@@ -8,6 +8,7 @@ set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
 set -gx HOMEBREW_CASK_OPTS '--appdir=/Applications'
 set -gx DOTFILES "$HOME/.dotfiles"
+set -gx BAT_THEME 'OneHalfDark'
 set -gx LANG en_US.UTF-8
 
 # rust path config
@@ -20,6 +21,9 @@ alias vim 'nvim'
 alias vi 'nvim'
 
 # Set up fzf key bindings
+set -gx FZF_DEFAULT_OPTS "--reverse --height 40%"
+set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --line-range=:500 --style=numbers {}' --preview-window right:60%:wrap"
+set -gx FZF_ALT_C_OPTS "--preview 'lsd --group-dirs=first --color=always --tree {} | head -200'"
 fzf --fish | source
 
 # zoxide setup
