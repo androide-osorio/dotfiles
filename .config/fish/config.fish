@@ -1,7 +1,7 @@
 set fish_greeting
 
 # initialize homebrew
-fish_add_path /opt/homebrew/bin
+fish_add_path (brew --prefix)/bin
 
 # Environment variables - https://fishshell.com/docs/current/cmds/set.html
 set -gx EDITOR nvim
@@ -31,3 +31,6 @@ zoxide init --cmd cd fish | source
 
 # initialize starship
 starship init fish | source
+
+# asdf config
+source (brew --prefix asdf)/libexec/asdf.fish
