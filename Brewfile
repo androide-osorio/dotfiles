@@ -48,8 +48,6 @@ brew "jq"
 brew "lsd"
 # Mac App Store command-line interface
 brew "mas"
-# Run a Kubernetes cluster locally
-brew "minikube"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Alternative to grep command
@@ -126,5 +124,7 @@ cask "whatsapp"
 #########################################################################
 # Victor Mono
 cask "font-victor-mono-nerd-font"
-# JetBrains Mono
+# JetBrains Mono Nerd Font
 cask "font-jetbrains-mono-nerd-font"
+# JetBrains Mono regular font
+cask "font-jetbrains-mono"

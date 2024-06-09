@@ -1,10 +1,17 @@
 #!/bin/bash
 
 # Check if Brewfile exists
-if [ ! -f "Brewfile" ]; then
-    echo "Brewfile not found. Please ensure the Brewfile is in the current directory."
+if [ ! -f "../Brewfile" ]; then
+    echo "Brewfile not found. Please ensure the Brewfile is in the parent directory."
     exit 1
 fi
+
+check_command_success() {
+    if [ $? -ne 0 ]; then
+        echo "An error occurred. Exiting."
+        exit 1
+    fi
+}
 
 # Install Homebrew if it's not installed
 if ! command -v brew &> /dev/null; then
@@ -15,6 +22,6 @@ fi
 
 # Install applications from Brewfile
 echo "Installing applications from Brewfile..."
-brew bundle --file=Brewfile
+brew bundle --file=../Brewfile
 
 echo "Homebrew packages and casks installation completed successfully."
