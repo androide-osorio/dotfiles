@@ -24,4 +24,7 @@ check_command_success
 ./scripts/vim.prepare.sh
 check_command_success
 
+# Sync stow files
+stow . --target=$HOME
+
 echo "Setup completed successfully."

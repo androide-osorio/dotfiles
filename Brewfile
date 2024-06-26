@@ -86,8 +86,6 @@ cask "google-chrome"
 cask "google-drive"
 # mac menu bar app manager
 cask "hiddenbar"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
 # screen recorder
 cask "kap"
 # keyboard visualizer for screencasts
@@ -116,6 +114,8 @@ cask "utm"
 cask "vlc"
 # Open-source code editor
 cask "visual-studio-code"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "warp"
 # Chat messaging app
 cask "whatsapp"
 
