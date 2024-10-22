@@ -1,5 +1,8 @@
 set fish_greeting
 
+# Key bindings
+fish_vi_key_bindings
+
 # initialize homebrew
 fish_add_path (brew --prefix)/bin
 
@@ -30,7 +33,8 @@ fzf --fish | source
 zoxide init --cmd cd fish | source
 
 # initialize starship
-starship init fish | source
+# starship init fish | source
+source ~/.config/fish/starship_init.fish
 
 # asdf config
 source (brew --prefix asdf)/libexec/asdf.fish

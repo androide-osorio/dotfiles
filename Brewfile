@@ -72,8 +72,6 @@ cask "1password"
 cask "arc"
 # private web browsing
 cask "brave-browser"
-# ChatGPT official app
-cask "chatgpt"
 # App to build and share containerized applications and microservices
 cask "docker"
 # Figma design tool
@@ -115,7 +113,7 @@ cask "vlc"
 # Open-source code editor
 cask "visual-studio-code"
 # Terminal emulator as alternative to Apple's Terminal app
-cask "warp"
+cask "alacritty"
 # Chat messaging app
 cask "whatsapp"
 

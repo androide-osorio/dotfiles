@@ -96,6 +96,10 @@ local plugins = {
     opts = function ()
        return require("custom.configs.none-ls")
     end
+  },
+  {
+    "ThePrimeagen/vim-be-good",
+    lazy = false,
   }
 }
 
