@@ -113,7 +113,7 @@ cask "vlc"
 # Open-source code editor
 cask "visual-studio-code"
 # Terminal emulator as alternative to Apple's Terminal app
-cask "alacritty"
+cask "ghostty"
 # Chat messaging app
 cask "whatsapp"
 

@@ -24,10 +24,16 @@ alias vim 'nvim'
 alias vi 'nvim'
 
 # Set up fzf key bindings
-set -gx FZF_DEFAULT_OPTS "--reverse --height 40%"
+set -gx FZF_DEFAULT_OPTS "--reverse --border double --height 80% --cycle --wrap"
 set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --line-range=:500 --style=numbers {}' --preview-window right:60%:wrap"
 set -gx FZF_ALT_C_OPTS "--preview 'lsd --group-dirs=first --color=always --tree {} | head -200'"
 fzf --fish | source
+
+# Git fzf integration
+if status is-interactive && test -f ~/.config/fish/custom/git_fzf.fish
+	source ~/.config/fish/custom/git_fzf.fish
+	git_fzf_key_bindings
+end
 
 # zoxide setup
 zoxide init --cmd cd fish | source
