@@ -13,6 +13,7 @@ set -gx HOMEBREW_CASK_OPTS '--appdir=/Applications'
 set -gx DOTFILES "$HOME/.dotfiles"
 set -gx BAT_THEME 'OneHalfDark'
 set -gx LANG en_US.UTF-8
+set -Ux XDG_CONFIG_HOME $HOME/.config
 
 # rust path config
 set PATH $HOME/.cargo/bin $PATH
@@ -39,8 +40,8 @@ end
 zoxide init --cmd cd fish | source
 
 # initialize starship
-# starship init fish | source
-source ~/.config/fish/starship_init.fish
+starship init fish --print-full-init | sed 's/"$(commandline)"/(commandline | string collect)/' | source
+#source ~/.config/fish/starship_init.fish
 
 # asdf config
 source (brew --prefix asdf)/libexec/asdf.fish

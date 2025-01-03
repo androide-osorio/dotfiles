@@ -58,6 +58,8 @@ brew "starship"
 brew "stow"
 # Better manual pages
 brew "tldr"
+# Terminal multiplexer
+brew "tmux"
 # Watch files and take action when they change
 brew "watchman"
 # A better CD command
