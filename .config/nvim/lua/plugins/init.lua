@@ -87,6 +87,17 @@ local plugins = {
     }
   },
   {
+    "williamboman/mason-lspconfig.nvim",
+    lazy = false,
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "ts_ls",
+          -- other LSP servers...
+      },
+    },
+  },
+  {
     "rust-lang/rust.vim",
     ft = "rust",
     init = function ()
@@ -147,6 +158,11 @@ local plugins = {
     opts = function ()
       require "configs.none-ls"
     end
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 }
 

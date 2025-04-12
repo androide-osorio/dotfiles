@@ -20,18 +20,29 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig.lua_ls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
+        },
+      },
+    },
+  },
+})
+
 lspconfig.pyright.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
   filetypes = {"python"},
-}
-
-lspconfig.ts_ls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = {"typescript", "typescriptreact"},
 }
 
 lspconfig.cssls.setup {

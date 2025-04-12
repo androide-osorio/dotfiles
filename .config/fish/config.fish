@@ -41,7 +41,6 @@ zoxide init --cmd cd fish | source
 
 # initialize starship
 starship init fish --print-full-init | sed 's/"$(commandline)"/(commandline | string collect)/' | source
-#source ~/.config/fish/starship_init.fish
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /Users/androide.osorio/.lmstudio/bin
