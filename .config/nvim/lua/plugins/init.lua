@@ -37,6 +37,7 @@ local plugins = {
   			"vim",
         "lua",
         "vimdoc",
+        "rust",
         "html",
         "css",
         "javascript",
@@ -100,6 +101,7 @@ local plugins = {
   {
     "rust-lang/rust.vim",
     ft = "rust",
+    lazy = true,
     init = function ()
       vim.g.rustfmt_autosave = 1
     end
@@ -108,6 +110,7 @@ local plugins = {
     'mrcjkb/rustaceanvim',
     version = '^3',
     ft = { 'rust' },
+    lazy = true,
   },
   {
     "mfussenegger/nvim-dap",
@@ -138,6 +141,7 @@ local plugins = {
       "rcarriga/nvim-dap-ui",
       "mfussenegger/nvim-dap",
     },
+    lazy = true,
     config = function ()
       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
@@ -146,6 +150,7 @@ local plugins = {
   {
     "saecki/crates.nvim",
     ft = {"rust", "toml"},
+    lazy = true,
     config = function (_, opts)
       local crates = require "crates"
       crates.setup(opts)
@@ -155,6 +160,7 @@ local plugins = {
   {
     "nvimtools/none-ls.nvim",
     ft = {"python"},
+    lazy = true,
     opts = function ()
       require "configs.none-ls"
     end
@@ -163,6 +169,7 @@ local plugins = {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
+    lazy = true,
   },
 }
 
