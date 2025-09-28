@@ -7,7 +7,7 @@ shell-integration-features = title,no-cursor
 cursor-style = block
 
 # Theme configuration
-theme = dark:catppuccin-mocha,light:catppuccin-macchiato
+theme = Catppuccin Frappe
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 16
 background-opacity = 0.98
@@ -25,4 +25,4 @@ quick-terminal-position = top
 
 # Keybindings
 keybind = cmd+shift+`=toggle_quick_terminal
-
+keybind = shift+enter=text:\x1b\r

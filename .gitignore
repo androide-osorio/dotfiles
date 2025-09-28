@@ -15,3 +15,6 @@ Thumbs.db
 
 # ignore all node_modules
 node_modules
+
+# env files with secrets
+.config/fish/env/secrets.fish

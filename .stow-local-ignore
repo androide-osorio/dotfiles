@@ -9,7 +9,13 @@
 # script files are utility shell scripts. Do not sync
 ^/scripts
 
+# LLM agent files. Do not sync
+^/.cursor
+
 ^/README.*
 Brewfile
 Brewfile.lock.json
 setup.sh
+
+# Template files - do not sync
+^/\.config/fish/env/secrets\.tpl\.fish$
