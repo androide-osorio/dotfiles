@@ -111,18 +111,50 @@ After installation, you can customize your environment:
 # Switch to Fish shell as default
 chsh -s /opt/homebrew/bin/fish
 
-# Edit Fish configuration
-nvim ~/.config/fish/config.fish
+# Edit Fish configuration (modular architecture)
+nvim ~/.config/fish/config.fish          # Main orchestrator
+nvim ~/.config/fish/env/env.fish         # Environment variables
+nvim ~/.config/fish/env/aliases.fish     # Command aliases
+nvim ~/.config/fish/env/path.fish        # PATH management
+nvim ~/.config/fish/env/secrets.fish     # API keys and secrets
 
 # Edit Neovim configuration
 nvim ~/.config/nvim/lua/chadrc.lua
 
 # Edit Tmux configuration
 nvim ~/.config/tmux/tmux.conf
-
-# Edit environment variables (API keys, secrets)
-nvim ~/.config/fish/env/secrets.fish
 ```
+
+### Fish Configuration Architecture
+
+The Fish shell configuration uses a **modular architecture** for better maintainability:
+
+```
+.config/fish/
+├── config.fish              # Main orchestrator file
+├── env/                     # Environment configurations
+│   ├── env.fish            # Core environment variables
+│   ├── path.fish           # PATH management
+│   ├── aliases.fish        # Command aliases
+│   ├── secrets.fish        # Sensitive data (gitignored)
+│   └── secrets.tpl.fish    # Template for secrets
+├── custom/                  # Custom integrations
+│   ├── completions.fish    # Command completions
+│   ├── setup_fzf.fish      # FZF configuration
+│   └── git_fzf.fish        # Git+FZF integration
+├── functions/               # Command overrides
+│   ├── cat.fish            # bat wrapper
+│   ├── ls.fish             # lsd wrapper
+│   └── tree.fish           # lsd tree wrapper
+└── conf.d/                  # Fish auto-loading
+    └── asdf.fish           # ASDF integration
+```
+
+**Benefits of this architecture**:
+- **Separation of Concerns**: Each file has a single responsibility
+- **Easy Maintenance**: Find and modify specific functionality quickly
+- **Security**: Secrets are isolated and templated
+- **Modularity**: Add new features without cluttering main config
 
 ## Important Notes
 

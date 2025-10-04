@@ -72,55 +72,185 @@ setup.sh
 
 ## Shell Configuration (Fish)
 
-### Primary Configuration
+### Modular Architecture Overview
+
+The Fish shell configuration uses a **sophisticated modular architecture** that separates concerns and provides excellent maintainability. This represents a significant evolution from monolithic configuration files.
+
+### Directory Structure
+
+```
+.config/fish/
+├── config.fish              # Main orchestrator file (clean, minimal)
+├── env/                     # Environment-specific configurations
+│   ├── env.fish            # Core environment variables
+│   ├── path.fish           # PATH management with fish_add_path
+│   ├── aliases.fish        # Command aliases
+│   ├── secrets.fish        # Sensitive data (gitignored)
+│   └── secrets.tpl.fish    # Template for secrets
+├── custom/                  # Custom integrations and workflows
+│   ├── completions.fish    # Command completions (1Password CLI)
+│   ├── setup_fzf.fish      # FZF configuration and integration
+│   └── git_fzf.fish        # Advanced Git+FZF workflow
+├── functions/               # Command overrides and wrappers
+│   ├── cat.fish            # bat wrapper for syntax highlighting
+│   ├── ls.fish             # lsd wrapper with directory grouping
+│   └── tree.fish           # lsd tree wrapper
+└── conf.d/                  # Fish auto-loading directory
+    └── asdf.fish           # ASDF integration
+```
+
+### Main Orchestrator
 
 File: `.config/fish/config.fish`
 
-**Key Features**:
-
-- Vi key bindings (`fish_vi_key_bindings`)
-- Homebrew path integration
-- Environment variables for development tools
-- Custom aliases (vim→nvim, ll→ls -la)
-- fzf integration with custom options
-- zoxide integration for smart directory navigation
-- Starship prompt initialization
-
-**Environment Variables**:
+**Architecture**: Acts as a clean orchestrator that loads modular components in logical order:
 
 ```fish
+set fish_greeting
+
+# Key bindings
+fish_vi_key_bindings
+
+# Environment variables
+source $HOME/.config/fish/env/env.fish
+
+# Load environment variables from secrets.fish if it exists
+if test -f $HOME/.config/fish/env/secrets.fish
+  source $HOME/.config/fish/env/secrets.fish
+end
+
+# Setup system paths
+source $HOME/.config/fish/env/path.fish
+
+# Load aliases
+source $HOME/.config/fish/env/aliases.fish
+
+# Load completions
+source $HOME/.config/fish/custom/completions.fish
+
+# Set up fzf
+source $HOME/.config/fish/custom/setup_fzf.fish
+
+# zoxide setup
+zoxide init --cmd cd fish | source
+
+# initialize starship
+starship init fish --print-full-init | sed 's/"$(commandline)"/(commandline | string collect)/' | source
+```
+
+**Key Design Principles**:
+
+- **Single Responsibility**: Each sourced file has one clear purpose
+- **Conditional Loading**: Safe loading of optional components
+- **Logical Order**: Environment → Paths → Aliases → Integrations → Tools
+
+### Environment Configuration (`env/`)
+
+#### Core Environment Variables
+
+File: `.config/fish/env/env.fish`
+
+```fish
+# Add custom environment variables to the machine's environment.
+# Mostly used for custom variables and some global settings
+# like the default terminal editor, etc.
+set -gx BAT_THEME 'OneHalfDark'
+set -gx DOTFILES "$HOME/.dotfiles"
 set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
 set -gx HOMEBREW_CASK_OPTS '--appdir=/Applications'
-set -gx DOTFILES "$HOME/.dotfiles"
-set -gx BAT_THEME 'OneHalfDark'
 set -gx LANG en_US.UTF-8
 set -Ux XDG_CONFIG_HOME $HOME/.config
-set PATH $HOME/.cargo/bin $PATH
-
-# Load environment variables from secrets.fish if it exists
-if test -f ~/.config/fish/env/secrets.fish
-    source ~/.config/fish/env/secrets.fish
-end
 ```
 
-**fzf Configuration**:
+#### PATH Management
+
+File: `.config/fish/env/path.fish`
 
 ```fish
+# Add custom paths to the PATH environment variable
+fish_add_path (brew --prefix)/bin
+fish_add_path $HOME/.cargo/bin
+fish_add_path -a $HOME/.lmstudio/bin
+```
+
+**Benefits**:
+
+- Uses `fish_add_path` for clean PATH management
+- Prevents duplicate entries
+- Maintains proper PATH order
+
+#### Command Aliases
+
+File: `.config/fish/env/aliases.fish`
+
+```fish
+# Fish Shell Aliases
+# This file contains all command aliases for the Fish shell
+
+# Directory navigation
+alias . 'pwd'
+
+# File listing
+alias ll 'ls -la'
+
+# Editor aliases
+alias vim 'nvim'
+alias vi 'nvim'
+
+# Add your custom aliases here
+# Example:
+# alias g 'git'
+# alias ga 'git add'
+# alias gc 'git commit'
+# alias gp 'git push'
+# alias gs 'git status'
+```
+
+**Design**: Clean, documented aliases with examples for common Git workflows.
+
+### Custom Integrations (`custom/`)
+
+#### FZF Configuration
+
+File: `.config/fish/custom/setup_fzf.fish`
+
+```fish
+# Setup FZF integration with custom options
+# and Git fzf integration
 set -gx FZF_DEFAULT_OPTS "--reverse --border double --height 80% --cycle --wrap"
 set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --line-range=:500 --style=numbers {}' --preview-window right:60%:wrap"
 set -gx FZF_ALT_C_OPTS "--preview 'lsd --group-dirs=first --color=always --tree {} | head -200'"
+
+if status is-interactive && test -f ./git_fzf.fish
+  source ./git_fzf.fish
+  git_fzf_key_bindings
+end
+
+fzf --fish | source
 ```
 
-### Custom Functions
+**Features**:
 
-Located in `.config/fish/functions/`:
+- Custom preview windows with `bat` and `lsd`
+- Conditional Git integration loading
+- Interactive-only loading for performance
 
-- **cat.fish**: Wraps `cat` command to use `bat` for syntax highlighting
-- **ls.fish**: Wraps `ls` command to use `lsd` with directory grouping
-- **tree.fish**: Custom tree command implementation
+#### Command Completions
 
-### Git Integration
+File: `.config/fish/custom/completions.fish`
+
+```fish
+# Command line completions for various commands
+# I regularly use.
+
+# 1Password CLI
+op completion fish | source
+```
+
+**Extensible**: Easy to add new command completions as needed.
+
+#### Git+FZF Integration
 
 File: `.config/fish/custom/git_fzf.fish`
 
@@ -128,6 +258,86 @@ File: `.config/fish/custom/git_fzf.fish`
 - Key bindings: `Ctrl+g Ctrl+f` (status), `Ctrl+g Ctrl+b` (branches), etc.
 - Multi-selection support for git operations
 - Preview windows for git history and diffs
+
+### Function Overrides (`functions/`)
+
+#### Command Wrappers
+
+**cat.fish**:
+
+```fish
+function cat --wraps=bat --description 'alias cat=bat'
+  bat $argv;
+end
+```
+
+**ls.fish**:
+
+```fish
+function ls --wraps='lsd --group-dirs first' --wraps='lsd --group-dirs=first' --description 'alias ls=lsd --group-dirs=first'
+  lsd --group-dirs=first $argv;
+end
+```
+
+**tree.fish**:
+
+```fish
+function tree --wraps='lsd --tree' --description 'alias tree=lsd --tree'
+  lsd --tree $argv;
+end
+```
+
+**Design Patterns**:
+
+- **Wrapper Pattern**: Maintains command compatibility while enhancing functionality
+- **Proper Metadata**: Uses `--wraps` and `--description` for Fish integration
+- **Argument Forwarding**: Preserves all command arguments with `$argv`
+
+### Auto-Loading Configuration (`conf.d/`)
+
+#### ASDF Integration
+
+File: `.config/fish/conf.d/asdf.fish`
+
+```fish
+# ASDF configuration code
+if test -z $ASDF_DATA_DIR
+    set _asdf_shims "$HOME/.asdf/shims"
+else
+    set _asdf_shims "$ASDF_DATA_DIR/shims"
+end
+
+# Do not use fish_add_path (added in Fish 3.2) because it
+# potentially changes the order of items in PATH
+if not contains $_asdf_shims $PATH
+    set -gx --prepend PATH $_asdf_shims
+end
+set --erase _asdf_shims
+```
+
+**Benefits**:
+- Auto-loads with Fish shell
+- Proper PATH management for ASDF shims
+- Clean variable cleanup
+
+### Architecture Benefits
+
+1. **Separation of Concerns**: Each file has a single, clear responsibility
+2. **Maintainability**: Easy to find, modify, and extend specific functionality
+3. **Security**: Secrets are properly isolated and templated
+4. **Performance**: Conditional loading and lazy initialization
+5. **Collaboration**: Multiple people can work on different aspects without conflicts
+6. **Documentation**: Each file is self-documenting with clear purposes
+7. **Testing**: Individual components can be tested separately
+8. **Version Control**: Changes are isolated to specific files, reducing merge conflicts
+
+### Design Patterns Used
+
+1. **Template Pattern**: `secrets.tpl.fish` → `secrets.fish` prevents accidental secret commits
+2. **Wrapper Pattern**: Function overrides maintain command compatibility while enhancing functionality
+3. **Modular Loading**: Each component loads independently, making debugging easier
+4. **Conditional Loading**: Safe loading of optional components (secrets, git_fzf)
+5. **Orchestrator Pattern**: Main config file coordinates loading of all modules
 
 ## Terminal Configuration
 
@@ -314,13 +524,24 @@ All scripts include:
 .dotfiles/
 ├── .config/
 │   ├── alacritty/          # Terminal emulator config
-│   ├── fish/               # Fish shell configuration
-│   │   ├── conf.d/         # Fish configuration snippets
-│   │   ├── custom/         # Custom functions and integrations
+│   ├── fish/               # Fish shell configuration (modular architecture)
+│   │   ├── config.fish     # Main orchestrator file
+│   │   ├── conf.d/         # Fish auto-loading directory
+│   │   │   └── asdf.fish   # ASDF integration
+│   │   ├── custom/         # Custom integrations and workflows
+│   │   │   ├── completions.fish    # Command completions
+│   │   │   ├── setup_fzf.fish      # FZF configuration
+│   │   │   └── git_fzf.fish        # Git+FZF integration
 │   │   ├── env/            # Environment variable management
-│   │   │   ├── secrets.tpl.fish # Template (committed)
-│   │   │   └── secrets.fish    # Local config (gitignored)
-│   │   └── functions/      # Command overrides
+│   │   │   ├── env.fish            # Core environment variables
+│   │   │   ├── path.fish            # PATH management
+│   │   │   ├── aliases.fish        # Command aliases
+│   │   │   ├── secrets.tpl.fish    # Template (committed)
+│   │   │   └── secrets.fish        # Local config (gitignored)
+│   │   └── functions/      # Command overrides and wrappers
+│   │       ├── cat.fish            # bat wrapper
+│   │       ├── ls.fish             # lsd wrapper
+│   │       └── tree.fish           # lsd tree wrapper
 │   ├── ghostty/            # Ghostty terminal config
 │   ├── nvim/               # Neovim configuration
 │   ├── starship.toml       # Prompt configuration
@@ -547,10 +768,14 @@ gh auth status
 
 **Modifying Shell Configuration**:
 
-1. Edit `.config/fish/config.fish` for environment variables
-2. Add functions to `.config/fish/functions/`
-3. Add custom integrations to `.config/fish/custom/`
-4. Test Fish configuration with `fish -c "source ~/.config/fish/config.fish"`
+1. **Environment Variables**: Edit `.config/fish/env/env.fish` for core variables
+2. **PATH Management**: Edit `.config/fish/env/path.fish` for PATH modifications
+3. **Aliases**: Edit `.config/fish/env/aliases.fish` for command aliases
+4. **Functions**: Add functions to `.config/fish/functions/` for command overrides
+5. **Custom Integrations**: Add integrations to `.config/fish/custom/`
+6. **Completions**: Add completions to `.config/fish/custom/completions.fish`
+7. **Main Config**: Edit `.config/fish/config.fish` only for orchestration changes
+8. Test Fish configuration with `fish -c "source ~/.config/fish/config.fish"`
 
 **Adding Terminal Themes**:
 
@@ -578,8 +803,10 @@ gh auth status
 
 1. **Stow Conflicts**: If files exist in target locations, remove them before running stow
 2. **Fish Functions**: Functions are automatically loaded - no manual sourcing needed
-3. **Git Signing**: Requires 1Password CLI and SSH key setup
-4. **Terminal Themes**: Both Ghostty and Alacritty configs exist - choose one primary terminal
+3. **Fish Configuration**: Modular architecture means each component loads independently - check individual files if issues arise
+4. **Environment Variables**: Check `.config/fish/env/env.fish` for core variables, `.config/fish/env/path.fish` for PATH issues
+5. **Git Signing**: Requires 1Password CLI and SSH key setup
+6. **Terminal Themes**: Both Ghostty and Alacritty configs exist - choose one primary terminal
 
 ### Validation Commands
 
@@ -587,8 +814,16 @@ gh auth status
 # Test Stow installation
 stow . --target=$HOME --simulate
 
-# Test Fish configuration
+# Test Fish configuration (modular architecture)
 fish -c "source ~/.config/fish/config.fish; echo 'Fish config loaded'"
+
+# Test individual Fish modules
+fish -c "source ~/.config/fish/env/env.fish; echo 'Environment variables loaded'"
+fish -c "source ~/.config/fish/env/path.fish; echo 'PATH configuration loaded'"
+fish -c "source ~/.config/fish/env/aliases.fish; echo 'Aliases loaded'"
+
+# Test Fish functions
+fish -c "functions | grep -E '(cat|ls|tree)'"
 
 # Test Git configuration
 git config --list | grep -E "(user|gpg|commit)"
