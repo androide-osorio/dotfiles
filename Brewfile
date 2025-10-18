@@ -74,6 +74,10 @@ cask "1password"
 cask "arc"
 # private web browsing
 cask "brave-browser"
+# Cursor IDE
+cask "cursor"
+# Cursor agent CLI
+cask "cursor-cli"
 # App to build and share containerized applications and microservices
 cask "docker"
 # Figma design tool
@@ -84,6 +88,8 @@ cask "firefox"
 cask "google-chrome"
 # google drive
 cask "google-drive"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "ghostty"
 # mac menu bar app manager
 cask "hiddenbar"
 # screen recorder
@@ -112,10 +118,6 @@ cask "the-unarchiver"
 cask "utm"
 # open source video player for multiple formats
 cask "vlc"
-# Open-source code editor
-cask "visual-studio-code"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "ghostty"
 # Chat messaging app
 cask "whatsapp"
 

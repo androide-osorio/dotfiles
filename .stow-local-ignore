@@ -13,9 +13,15 @@
 ^/.cursor
 
 ^/README.*
+^/AGENTS.*
+
+# Homebrew files
 Brewfile
 Brewfile.lock.json
+
+# main setup script
 setup.sh
 
 # Template files - do not sync
 ^/\.config/fish/env/secrets\.tpl\.fish$
+
