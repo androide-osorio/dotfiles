@@ -1,23 +1,27 @@
 # Dotfiles Repository Improvements
 
 ## Overview
+
 This document outlines recommended improvements for the dotfiles repository, focused on maintainability and usability for personal use. These are practical, low-complexity enhancements that will make the repository more reliable and easier to maintain.
 
 ## High-Value Improvements
 
 ### 1. Reliability & Safety
+
 - **Idempotency**: Scripts should run multiple times safely without breaking
 - **Dry-run mode**: See what would be installed before actually doing it
 - **Rollback capability**: Simple way to revert if something goes wrong
 - **Dependency validation**: Check if required tools are available before proceeding
 
 ### 2. Maintenance & Updates
+
 - **Update mechanism**: Easy way to update existing installations
 - **Health checks**: Quick verification that all tools are working
 - **Version pinning**: Lock specific versions to avoid breaking changes
 - **Backup system**: Backup existing configs before overwriting
 
 ### 3. User Experience
+
 - **Progress indicators**: Show what's happening during long operations
 - **Better error messages**: Clear, actionable error messages
 - **Skip existing**: Don't reinstall tools that are already working
@@ -26,7 +30,9 @@ This document outlines recommended improvements for the dotfiles repository, foc
 ## Specific Technical Recommendations
 
 ### A. Script Improvements
+
 Add the following flags to `setup.sh`:
+
 ```bash
 --dry-run          # Show what would be installed
 --skip-existing    # Skip tools already installed
@@ -36,19 +42,23 @@ Add the following flags to `setup.sh`:
 ```
 
 ### B. Idempotency Implementation
+
 - Check if tools are already installed before installing
 - Only overwrite configs if they've changed
 - Use `brew list` to check if packages are already installed
 - Check if SSH keys already exist before generating new ones
 
 ### C. Error Handling
+
 - Better error messages with suggested fixes
 - Continue installation even if one component fails
 - Log what succeeded and what failed
 - Clear rollback instructions
 
 ### D. Update Mechanism
+
 Create a simple update script:
+
 ```bash
 ./update.sh        # Update all tools to latest versions
 ./update.sh --configs  # Only update configuration files
@@ -57,22 +67,26 @@ Create a simple update script:
 
 ## Priority Order
 
-### Immediate (This Week)
+### Immediate
+
 1. **Add dry-run mode** - See what would happen
 2. **Make scripts idempotent** - Safe to run multiple times
 3. **Add skip-existing logic** - Don't reinstall working tools
 
-### Next Iteration (Next Month)
+### Next Iteration
+
 1. **Create update.sh script** - Easy updates
 2. **Add health check script** - Verify everything works
 3. **Improve error messages** - Better troubleshooting
 
-### Future (When Needed)
+### Future
+
 1. **Add backup system** - Protect existing configs
 2. **Version pinning** - Lock specific versions
 3. **Progress indicators** - Show installation progress
 
 ## Quick Wins
+
 - Add `--help` to all scripts
 - Check `brew list` before installing packages
 - Add `set -e` and proper error handling
@@ -80,6 +94,7 @@ Create a simple update script:
 - Add `--dry-run` flag to main setup
 
 ## Implementation Notes
+
 - Focus on practical, maintainable improvements
 - Avoid over-engineering for personal use
 - Prioritize reliability and ease of maintenance
@@ -87,6 +102,7 @@ Create a simple update script:
 - Test improvements incrementally
 
 ## Benefits
+
 - **Reliability**: Scripts run safely multiple times
 - **Safety**: Dry-run mode prevents accidental changes
 - **Maintainability**: Easy updates and health checks

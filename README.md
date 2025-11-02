@@ -160,7 +160,7 @@ The Fish shell configuration uses a **modular architecture** for better maintain
 
 - **SSH Setup**: The SSH script will generate new keys - you may want to use existing ones
 - **Environment Variables**: After setup, edit `~/.config/fish/env/secrets.fish` to add your API keys and secrets
-- **Terminal Choice**: Both Ghostty and Alacritty configs exist - choose your preferred terminal
+- **Terminal Choice**: Ghostty terminal emulator
 - **macOS Only**: This setup is designed specifically for macOS (ARM64 and Intel)
 
 ## Environment Variable Management
