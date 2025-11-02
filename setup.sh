@@ -12,6 +12,10 @@ check_command_success() {
 ./scripts/brew.prepare.sh
 check_command_success
 
+# Set Fish shell as the default shell
+./scripts/shell.prepare.sh
+check_command_success
+
 # Execute SSH setup script
 ./scripts/ssh.prepare.sh
 check_command_success
