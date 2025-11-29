@@ -26,6 +26,8 @@ brew "bat"
 brew "bundler"
 # package manager for iOS
 brew "cocoapods"
+# syntax-highlighting pager for git, diff, grep, and blame output
+brew "git-delta"
 # Alternative to the find command
 brew "fd"
 # User-friendly command-line shell for UNIX-like operating systems
