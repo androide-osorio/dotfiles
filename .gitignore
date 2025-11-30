@@ -18,3 +18,7 @@ node_modules
 
 # env files with secrets
 .config/fish/env/secrets.fish
+
+# Catppuccin themes (downloaded from source repos)
+.config/bat/themes/*.tmTheme
+.config/delta/catppuccin.gitconfig

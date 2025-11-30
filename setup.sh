@@ -32,6 +32,10 @@ check_command_success
 ./scripts/env.prepare.sh
 check_command_success
 
+# Execute themes setup script
+./scripts/themes.prepare.sh
+check_command_success
+
 # Sync stow files
 stow . --target=$HOME
 

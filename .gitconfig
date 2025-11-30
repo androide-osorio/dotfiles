@@ -4,6 +4,8 @@
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJmp4SulbB/FMiyOgwsoh98vkZ5E1D/2MZNwHmAL0KnS
 [init]
 	defaultBranch = main
+[include]
+	path = ~/.config/delta/catppuccin.gitconfig
 [core]
 	autocrlf = input
 	pager = delta
@@ -16,12 +18,10 @@
 	diffFilter = delta --color-only
 [delta]
 	navigate = true  # use n and N to move between diff sections
-	dark = true      # or light = true, or omit for auto-detection
 	side-by-side = true
 	line-numbers = true
-	syntax-theme = "OneHalfDark"
 	hyperlinks = true
-	features = whitespace, decorations
+	features = whitespace decorations catppuccin-frappe
 	hyperlinks-file-link-format = "cursor://file/{path}:{line}"
 [merge]
 	conflictStyle = zdiff3
