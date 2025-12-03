@@ -20,12 +20,10 @@ brew "wget"
 brew "1password-cli"
 # Tools version manager
 brew "asdf"
+# AWS cli
+brew "awscli"
 # Better Cat command
 brew "bat"
-# bundler gem manager
-brew "bundler"
-# package manager for iOS
-brew "cocoapods"
 # syntax-highlighting pager for git, diff, grep, and blame output
 brew "git-delta"
 # Alternative to the find command
@@ -36,20 +34,14 @@ brew "fish"
 brew "fisher"
 # command line fuzzy finder
 brew "fzf"
-# C compiler
-brew "gcc"
 # Github CLI tool
 brew "gh"
 # GNU privacy guard for certificates and cryptography
 brew "gnupg"
-# Package and application manager for Kubernetes
-brew "helm"
 # JSON parsing utility for the terminal
 brew "jq"
 # Replacement for ls command
 brew "lsd"
-# Mac App Store command-line interface
-brew "mas"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Alternative to grep command
@@ -62,8 +54,6 @@ brew "stow"
 brew "tldr"
 # Terminal multiplexer
 brew "tmux"
-# Watch files and take action when they change
-brew "watchman"
 # A better CD command
 brew "zoxide"
 
@@ -74,60 +64,42 @@ brew "zoxide"
 cask "1password"
 # Arc browser (my current main browser)
 cask "arc"
-# private web browsing
-cask "brave-browser"
+# screen capture app
+cask "cap"
 # Cursor IDE
 cask "cursor"
 # Cursor agent CLI
 cask "cursor-cli"
-# App to build and share containerized applications and microservices
-cask "docker"
 # Figma design tool
 cask "figma"
 # Firefox browser for web testing
 cask "firefox"
 # Browser for web development
 cask "google-chrome"
-# google drive
-cask "google-drive"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "ghostty"
-# mac menu bar app manager
-cask "hiddenbar"
 # screen recorder
 cask "kap"
-# keyboard visualizer for screencasts
-cask "keycastr"
-# vpn service
-cask "nordvpn"
 # Projects and notes on the cloud
 cask "notion"
-# Video casting and recording
-cask "obs"
+# Calendar app
+cask "notion-calendar"
+# Email app
+cask "notion-mail"
 # Open-source note taking app
 cask "obsidian"
+# VPN
+cask "pritunl"
+# keyboard visualizer for screencasts
+cask "keycastr"
 # very customizable launcher
 cask "raycast"
-# window management for MacOS
-cask "rectangle"
-# freemium software modeling tool
-cask "staruml"
-# syntax highlighting for finder
-cask "syntax-highlight"
-# unarchiving utility app
-cask "the-unarchiver"
-# Virtual machines for MacOS ARM64
-cask "utm"
-# open source video player for multiple formats
-cask "vlc"
 # Chat messaging app
 cask "whatsapp"
 
 #########################################################################
 # Fonts
 #########################################################################
-# Victor Mono
-cask "font-victor-mono-nerd-font"
 # JetBrains Mono Nerd Font
 cask "font-jetbrains-mono-nerd-font"
 # JetBrains Mono regular font
