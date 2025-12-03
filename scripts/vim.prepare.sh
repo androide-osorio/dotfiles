@@ -6,4 +6,4 @@ echo "Setting up Vim/Neovim..."
 rm -rf ~/.config/nvim
 
 # Install NVchad
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+git clone https://github.com/NvChad/starter ~/.config/nvim --depth 1

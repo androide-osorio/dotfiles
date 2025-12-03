@@ -1,28 +1,28 @@
--- load defaults i.e lua_lsp
+-- Load NvChad defaults for LSP
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
--- EXAMPLE
-local servers = { "html", "cssls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
-local on_attach = nvlsp.on_attach
-local on_init = nvlsp.on_init
-local capabilities = nvlsp.capabilities
+-- Common configuration shared across all LSP servers
+local common_config = {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+}
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
-end
+-- Configure individual LSP servers using the new vim.lsp.config() API
+-- Reference: https://github.com/neovim/nvim-lspconfig
 
-lspconfig.lua_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
+-- HTML
+vim.lsp.config("html", common_config)
+
+-- CSS
+vim.lsp.config("cssls", vim.tbl_extend("force", common_config, {
+  filetypes = { "css", "scss", "less" },
+}))
+
+-- Lua (for Neovim config development)
+vim.lsp.config("lua_ls", vim.tbl_extend("force", common_config, {
   settings = {
     Lua = {
       diagnostics = {
@@ -30,31 +30,29 @@ lspconfig.lua_ls.setup({
       },
       workspace = {
         library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. "/lua"] = true,
+          vim.fn.expand("$VIMRUNTIME/lua"),
+          vim.fn.stdpath("config") .. "/lua",
         },
       },
     },
   },
+}))
+
+-- Python
+vim.lsp.config("pyright", vim.tbl_extend("force", common_config, {
+  filetypes = { "python" },
+}))
+
+-- Rust
+vim.lsp.config("rust_analyzer", vim.tbl_extend("force", common_config, {
+  filetypes = { "rust" },
+}))
+
+-- Enable all configured LSP servers
+vim.lsp.enable({
+  "html",
+  "cssls",
+  "lua_ls",
+  "pyright",
+  "rust_analyzer",
 })
-
-lspconfig.pyright.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = {"python"},
-}
-
-lspconfig.cssls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = {"css"},
-}
-
-lspconfig.rust_analyzer.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = {"rust"},
-}

@@ -1,7 +1,7 @@
 [user]
 	name = Andres Osorio
 	email = andres.osorio@payfit.com
-  	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAEjbHUWPeEvrRW4zFkBjFHuKWwBxK8uwHayjsOl/lM
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAEjbHUWPeEvrRW4zFkBjFHuKWwBxK8uwHayjsOl/lM
 [init]
 	defaultBranch = main
 [include]
