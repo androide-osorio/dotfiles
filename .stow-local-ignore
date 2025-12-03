@@ -6,6 +6,9 @@
 \.gitignore
 \.gitmodules
 
+# Ignore spec files (LLMs)
+^/.specs
+
 # script files are utility shell scripts. Do not sync
 ^/scripts
 
